@@ -3,3 +3,8 @@ C:\Users\phutc\Documents\SharpDevelop Projects\HinhChuNhat\HinhChuNhat\bin\Debug
 C:\Users\phutc\Documents\SharpDevelop Projects\HinhChuNhat\HinhChuNhat\obj\Debug\HinhChuNhat.csprojResolveAssemblyReference.cache
 C:\Users\phutc\Documents\SharpDevelop Projects\HinhChuNhat\HinhChuNhat\obj\Debug\HinhChuNhat.exe
 C:\Users\phutc\Documents\SharpDevelop Projects\HinhChuNhat\HinhChuNhat\obj\Debug\HinhChuNhat.pdb
+D:\0 - Client\VIDO\VIDOK11\HinhChuNhat\HinhChuNhat\bin\Debug\HinhChuNhat.exe
+D:\0 - Client\VIDO\VIDOK11\HinhChuNhat\HinhChuNhat\bin\Debug\HinhChuNhat.pdb
+D:\0 - Client\VIDO\VIDOK11\HinhChuNhat\HinhChuNhat\obj\Debug\HinhChuNhat.csprojResolveAssemblyReference.cache
+D:\0 - Client\VIDO\VIDOK11\HinhChuNhat\HinhChuNhat\obj\Debug\HinhChuNhat.exe
+D:\0 - Client\VIDO\VIDOK11\HinhChuNhat\HinhChuNhat\obj\Debug\HinhChuNhat.pdb

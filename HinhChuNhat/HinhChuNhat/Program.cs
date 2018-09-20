@@ -24,7 +24,7 @@ namespace HinhChuNhat
 				hocsinh[i].NhapThongTin();
 				hocsinh[i].TinhDiemTrungBinh();
 			}
-			
+			HienThiThongTin(hocsinh,N);
 			/* Code cu
 			
 			string [] sHoTen = new string[N];
@@ -109,6 +109,19 @@ namespace HinhChuNhat
 			for(i =0; i<N ; i++)
 			{
 				Console.WriteLine("| {0,-22} |    {1,3}    |   {2,3}    |       {3,3}       |", sHoTen[i],dToan[i],dVan[i],dTrungBinh[i]);
+			}
+			Console.WriteLine("-------------------------------------------------------------------");
+		}
+		
+		static void HienThiThongTin(HocSinh [] hocsinh, int N)
+		{
+			int i;
+			Console.WriteLine("-------------------------------------------------------------------");
+			Console.WriteLine("|     Ho Va Ten          | Diem Toan | Diem Van | Diem Trung Binh |");
+			Console.WriteLine("-------------------------------------------------------------------");
+			for(i =0; i<N ; i++)
+			{
+				Console.WriteLine("| {0,-22} |    {1,3}    |   {2,3}    |       {3,3}       |", hocsinh[i].HoTen,hocsinh[i].DiemToan,hocsinh[i].DiemVan,hocsinh[i].DiemTrungBinh);
 			}
 			Console.WriteLine("-------------------------------------------------------------------");
 		}
