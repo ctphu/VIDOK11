@@ -14,7 +14,7 @@ namespace HinhChuNhat
 	{
 		public static void Main(string[] args)
 		{
-			const int N = 2;
+			const int N = 1;
 			int i;
 			
 			HocSinh [] hocsinh = new HocSinh[N];
