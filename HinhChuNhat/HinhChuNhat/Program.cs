@@ -14,9 +14,19 @@ namespace HinhChuNhat
 	{
 		public static void Main(string[] args)
 		{
-			
 			const int N = 2;
 			int i;
+			
+			HocSinh [] hocsinh = new HocSinh[N];
+			for(i = 0 ; i<N ; i++)
+			{
+				hocsinh[i] = new HocSinh();
+				hocsinh[i].NhapThongTin();
+				hocsinh[i].TinhDiemTrungBinh();
+			}
+			
+			/* Code cu
+			
 			string [] sHoTen = new string[N];
 
 			double [] dToan = new double[N],dVan=new double[N],dTrungBinh=new double[N];
@@ -25,6 +35,11 @@ namespace HinhChuNhat
 				NhapThongTinHocSinh(out sHoTen[i], out dToan[i], out dVan[i], out dTrungBinh[i]);
 			}
 			HienThiThongTin(sHoTen, dToan, dVan,dTrungBinh,N);
+			
+			*/
+			
+			
+			
 			//Console.WriteLine("Hoc Sinh: {0} co diem toan {1}, diem van {2}, diem trung binh {3}",sHoTen, dToan, dVan, dTrungBinh);
 			
 			//InHinhChuNhat();
@@ -148,6 +163,33 @@ namespace HinhChuNhat
 				}
 				Console.WriteLine();
 			}
+		}
+	}
+	
+	class HocSinh
+	{
+		public string HoTen;
+		public DateTime NgaySinh;
+		public double DiemToan, DiemVan, DiemTrungBinh;
+		
+		public void NhapThongTin()
+		{
+			Console.Write("Nhap Ho Ten: ");
+			HoTen = Console.ReadLine();
+			
+			Console.Write("Nhap Ngay Sinh: ");
+			NgaySinh = DateTime.Parse(Console.ReadLine());
+			
+			Console.Write("Nhap diem toan: ");
+			DiemToan = double.Parse(Console.ReadLine());
+			
+			Console.Write("Nhap diem van: ");
+			DiemVan = double.Parse(Console.ReadLine());
+		}
+		
+		public void TinhDiemTrungBinh()
+		{
+			DiemTrungBinh=(DiemToan+DiemVan)/2;
 		}
 	}
 }
