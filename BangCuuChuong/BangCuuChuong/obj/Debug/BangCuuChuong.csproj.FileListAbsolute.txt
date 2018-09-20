@@ -1,0 +1,5 @@
+C:\Users\phutc\Documents\SharpDevelop Projects\BangCuuChuong\BangCuuChuong\bin\Debug\BangCuuChuong.exe
+C:\Users\phutc\Documents\SharpDevelop Projects\BangCuuChuong\BangCuuChuong\bin\Debug\BangCuuChuong.pdb
+C:\Users\phutc\Documents\SharpDevelop Projects\BangCuuChuong\BangCuuChuong\obj\Debug\BangCuuChuong.csprojResolveAssemblyReference.cache
+C:\Users\phutc\Documents\SharpDevelop Projects\BangCuuChuong\BangCuuChuong\obj\Debug\BangCuuChuong.exe
+C:\Users\phutc\Documents\SharpDevelop Projects\BangCuuChuong\BangCuuChuong\obj\Debug\BangCuuChuong.pdb
