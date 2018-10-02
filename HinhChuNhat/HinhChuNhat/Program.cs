@@ -12,19 +12,68 @@ namespace HinhChuNhat
 {
 	class Program
 	{
+		static void Move(int N, char From, char To)
+		{
+			Console.WriteLine("Move {0} From {1} To {2}", N, From, To);
+		}
+		
+		static void HNT(int N, char From, char Temp, char To)
+		{
+			if(N==1)
+				Move(N,From,To);
+			else
+			{
+				HNT(N-1,From,To,Temp);
+				Move(N,From,To);
+				HNT(N-1,Temp, From, To);
+			}
+		}
+		
+		static int ReadNumber(string Message, int Min, int Max)
+		{
+			int result = 0;
+			do
+			{
+				Console.Write(Message);
+				result = int.Parse(Console.ReadLine());
+			}while (result < Min || result > Max);
+			
+			return result;
+		}
+		
+//		public static void HoanVi(int [] array, int index, int N)
+//		{
+//			for(int i = index; i < N; i++)
+//			{
+//				Console.Write(array[i]);
+//				HoanVi(array,index+1,N);
+//				Console.WriteLine();
+//			}
+//		}
 		public static void Main(string[] args)
 		{
-			const int N = 1;
-			int i;
+			int N;
+			N = ReadNumber("Input N [3,10]:", 3,10);
+			HNT(N,'A','B','C');
+//			const int N = 1;
+//			int i;
+//			
+//			int [] array = new int[3];
+//			array[0]=1;
+//			array[1]=2;
+//			array[2]=3;
+//			HoanVi(array,0,3);
 			
-			HocSinh [] hocsinh = new HocSinh[N];
-			for(i = 0 ; i<N ; i++)
-			{
-				hocsinh[i] = new HocSinh();
-				hocsinh[i].NhapThongTin();
-				hocsinh[i].TinhDiemTrungBinh();
-			}
-			HienThiThongTin(hocsinh,N);
+//			HocSinh [] hocsinh = new HocSinh[N];
+//			for(i = 0 ; i<N ; i++)
+//			{
+//				hocsinh[i] = new HocSinh();
+//				hocsinh[i].NhapThongTin();
+//				hocsinh[i].TinhDiemTrungBinh();
+//			}
+//			HienThiThongTin(hocsinh,N);
+			
+			
 			/* Code cu
 			
 			string [] sHoTen = new string[N];
