@@ -106,6 +106,7 @@ namespace HinhChuNhat
 					}
 				}
 			}
+			Console.CursorVisible = false;
 			DisplayScreen(screen);
 			
 			do{
@@ -118,10 +119,21 @@ namespace HinhChuNhat
 						indexNew.X=index.X-1;
 					indexNew.Y = index.Y;
 				}
+				
 				screen[index.X,index.Y] = 0;
+				
+				Console.CursorTop = index.X;
+				Console.CursorLeft = index.Y;
+				Console.Write(" ");
+				
 				index = indexNew;
 				screen[index.X,index.Y] = 1;
-				DisplayScreen(screen);
+				
+				Console.CursorTop = index.X;
+				Console.CursorLeft = index.Y;
+				Console.Write("*");
+				
+				//DisplayScreen(screen);
 			}while (kb.Key != ConsoleKey.Escape);
 			
 			
