@@ -10,9 +10,13 @@ using System;
 using System.Collections.Generic;
 namespace MenuWithKeyPress
 {
+	public struct Menu{
+		public string Name;
+		public int Price;
+	}
 	class Program
 	{
-		static int DisplayMenu(List<string> menu)
+		static int DisplayMenu(List<string> menu, List<Menu> orders)
 		{
 			int i, index = 0;
 			ConsoleKeyInfo kb;
@@ -28,6 +32,7 @@ namespace MenuWithKeyPress
 						Console.Write("  ");
 					Console.WriteLine(menu[i]);
 				}
+				DisplayOrder(orders);
 				kb = Console.ReadKey();
 				if (kb.Key == ConsoleKey.UpArrow)
 				{
@@ -52,21 +57,44 @@ namespace MenuWithKeyPress
 			}while(true);
 			return index;
 		}
+		static void DisplayOrder(List<Menu> orders)
+		{
+			foreach (var element in orders) {
+				Console.WriteLine("Ban da chon {0} voi gia {1}",element.Name,element.Price);
+			}
+		}
 		public static void Main(string[] args)
 		{
+			List<Menu> order = new List<Menu>();
+			Menu item;
 			List<string> s = new List<string>();
-			s.Add("1. Ga Ran");
-			s.Add("2. Bo Go");
+			int index,i;
+			s.Add("1. Ga Ran (30)");
+			s.Add("2. Bo Go (35)");
 			s.Add("3. Thoat");
-			switch(DisplayMenu(s))
+			do
 			{
-				case 0:
-					Console.WriteLine("Ban chon ga ran");
-					break;
-				case 1:
-					Console.WriteLine("Ban chon bo go");
-					break;
-			}
+				index = DisplayMenu(s,order);
+				switch(index)
+				{
+					case 0:
+						//Console.WriteLine("Ban chon ga ran gia (30)");
+						item = new Menu();
+						item.Name = "Ga Ran";
+						item.Price = 30;
+						order.Add(item);
+						break;
+					case 1:
+						//Console.WriteLine("Ban chon bo go");
+						item = new Menu();
+						item.Name = "Bo Go";
+						item.Price = 35;
+						order.Add(item);
+						break;
+				}
+			}while (index != 2);
+			Console.Clear();
+			DisplayOrder(order);
 			Console.Write("Press any key to continue . . . ");
 			Console.ReadKey(true);
 		}
