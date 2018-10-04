@@ -79,14 +79,14 @@ namespace MenuWithKeyPress
 				{
 					case 0:
 						//Console.WriteLine("Ban chon ga ran gia (30)");
-						item = new Menu();
+						//item = new Menu();
 						item.Name = "Ga Ran";
 						item.Price = 30;
 						order.Add(item);
 						break;
 					case 1:
 						//Console.WriteLine("Ban chon bo go");
-						item = new Menu();
+						//item = new Menu();
 						item.Name = "Bo Go";
 						item.Price = 35;
 						order.Add(item);

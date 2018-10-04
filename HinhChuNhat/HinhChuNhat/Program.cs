@@ -10,8 +10,14 @@ using System;
 
 namespace HinhChuNhat
 {
+	struct Point{
+		public int X;
+		public int Y;
+	}
 	class Program
 	{
+		const int ROWS = 24;
+		const int COLS = 80;
 		static void Move(int N, char From, char To)
 		{
 			Console.WriteLine("Move {0} From {1} To {2}", N, From, To);
@@ -34,8 +40,15 @@ namespace HinhChuNhat
 			int result = 0;
 			do
 			{
-				Console.Write(Message);
-				result = int.Parse(Console.ReadLine());
+				try
+				{
+					Console.Write(Message);
+					result = int.Parse(Console.ReadLine());
+				}catch(Exception ex)
+				{
+					Console.WriteLine("Input is not correct !");
+					//Console.WriteLine(ex.ToString());
+				}
 			}while (result < Min || result > Max);
 			
 			return result;
@@ -50,11 +63,72 @@ namespace HinhChuNhat
 //				Console.WriteLine();
 //			}
 //		}
+		static void DisplayScreen(int [,] screen)
+		{
+			int i,j;
+			Console.Clear();
+			for(i=0;i<ROWS;i++)
+			{
+				for(j=0;j<COLS;j++)
+				{
+					if(screen[i,j] == 1)
+						Console.Write("*");
+					else
+						Console.Write(" ");
+				}
+				Console.WriteLine();
+			}
+		}
 		public static void Main(string[] args)
 		{
-			int N;
-			N = ReadNumber("Input N [3,10]:", 3,10);
-			HNT(N,'A','B','C');
+			int [,] screen = new int[ROWS,COLS];
+			int i,j;
+			Point index, indexNew;
+			ConsoleKeyInfo kb;
+			index.X = 5;
+			index.Y = 5;
+			indexNew = index;
+			for(i=0;i<ROWS;i++)
+			{
+				for(j=0;j<COLS;j++)
+				{
+					if(i==0 || j==0 || i==ROWS-1|| j==COLS-1)
+					{
+						screen[i,j] = 1;
+					}
+					else
+					{
+						screen[i,j]= 0;
+					}
+					if(i==index.X&&j==index.Y)
+					{
+						screen[i,j] = 1;
+					}
+				}
+			}
+			DisplayScreen(screen);
+			
+			do{
+				kb = Console.ReadKey();
+				if(kb.Key == ConsoleKey.UpArrow)
+				{
+					if(index.X==1)
+						indexNew.X=ROWS-2;
+					else
+						indexNew.X=index.X-1;
+					indexNew.Y = index.Y;
+				}
+				screen[index.X,index.Y] = 0;
+				index = indexNew;
+				screen[index.X,index.Y] = 1;
+				DisplayScreen(screen);
+			}while (kb.Key != ConsoleKey.Escape);
+			
+			
+//			int N;
+//			N = ReadNumber("Input N [3,10]:", 3,10);
+//			HNT(N,'A','B','C');
+			
 //			const int N = 1;
 //			int i;
 //			
