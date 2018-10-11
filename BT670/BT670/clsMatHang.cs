@@ -10,7 +10,7 @@ using System;
 using System.Collections.Generic;
 namespace BT670
 {
-	/// <summary>
+	/// <summary>..
 	/// Description of clsMatHang.
 	/// </summary>
 	public class clsMatHang

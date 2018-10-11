@@ -95,7 +95,56 @@ namespace BT670
 			Console.Write("Press any key to continue . . . ");
 			Console.ReadKey(true);
 		}
-		
+		static void TimMatHang(List<clsMatHang> dsMatHang)
+		{
+			clsMatHang max = new clsMatHang();
+			Console.WriteLine("----------------------------------------------------------------------");
+			Console.WriteLine("|     Ten Mat Hang      | So Luong Ton |    Don Gia   |    Gia Tri   |");
+			Console.WriteLine("----------------------------------------------------------------------");
+			max = dsMatHang[0];
+			foreach (var element in dsMatHang) 
+			{
+				Console.WriteLine("| {0,-21} | {1,12:# ### ###} | {2,12:# ### ###} | {3,12:# ### ###} |", element.TenMatHang,element.SoLuongTon,element.DonGia,element.SoLuongTon*element.DonGia);
+				if(element.SoLuongTon*element.DonGia > max.SoLuongTon*max.DonGia)
+				{
+					max = element;
+				}
+			}
+			Console.WriteLine("----------------------------------------------------------------------");
+			Console.WriteLine("---------------------Mat Hang Co Gia Tri Lon Nhat---------------------");
+			Console.WriteLine("| {0,-21} | {1,12:# ### ###} | {2,12:# ### ###} | {3,12:# ### ###} |", max.TenMatHang,max.SoLuongTon,max.DonGia,max.SoLuongTon*max.DonGia);
+			Console.WriteLine("----------------------------------------------------------------------");
+			Console.Write("Press any key to continue . . . ");
+			Console.ReadKey(true);
+		}
+		static void LocMatHang(List<clsMatHang> dsMatHang)
+		{
+			List<clsMatHang> dsLoc = new List<clsMatHang>();
+			
+			Console.WriteLine("----------------------------------------------------------------------");
+			Console.WriteLine("|     Ten Mat Hang      | So Luong Ton |    Don Gia   |    Gia Tri   |");
+			Console.WriteLine("----------------------------------------------------------------------");
+			
+			foreach (var element in dsMatHang) 
+			{
+				Console.WriteLine("| {0,-21} | {1,12:# ### ###} | {2,12:# ### ###} | {3,12:# ### ###} |", element.TenMatHang,element.SoLuongTon,element.DonGia,element.SoLuongTon*element.DonGia);
+				if(element.SoLuongTon> 1000)
+				{
+					dsLoc.Add(element);
+				}
+			}
+			Console.WriteLine("----------------------------------------------------------------------");
+			Console.WriteLine("------------------Danh sach mat hang ton > 1000 {0,5} ----------------",dsLoc.Count);
+			Console.WriteLine("|     Ten Mat Hang      | So Luong Ton |    Don Gia   |    Gia Tri   |");
+			Console.WriteLine("----------------------------------------------------------------------");
+			foreach (var element in dsLoc) 
+			{
+				Console.WriteLine("| {0,-21} | {1,12:# ### ###} | {2,12:# ### ###} | {3,12:# ### ###} |", element.TenMatHang,element.SoLuongTon,element.DonGia,element.SoLuongTon*element.DonGia);				
+			}
+			Console.WriteLine("----------------------------------------------------------------------");
+			Console.Write("Press any key to continue . . . ");
+			Console.ReadKey(true);
+		}
 		public static void Main(string[] args)
 		{
 			List<string> s = new List<string>();
@@ -118,8 +167,10 @@ namespace BT670
 						HienThiThongTin(dsMatHang);
 						break;
 					case 2:
+						TimMatHang(dsMatHang);
 						break;
 					case 3:
+						LocMatHang(dsMatHang);
 						break;
 				
 				}
