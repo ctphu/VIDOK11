@@ -8,6 +8,7 @@
  */
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BT670
 {
@@ -82,6 +83,117 @@ namespace BT670
 			a.SoLuongTon =ReadNumber("Nhap So Luong Ton: ",1, 10000);
 			return a;
 		}
+		
+		static clsCauThu NhapCauThu()
+		{
+			clsCauThu a = new clsCauThu();
+			Console.Write("Nhap Ma Cau Thu: ");
+			a.MaCauThu = Console.ReadLine();
+			Console.Write("Nhap Ten Cau Thu: ");
+			a.TenCauThu = Console.ReadLine();
+			do
+			{
+				try
+				{
+					Console.Write("Nhap Ngay Sinh:");
+					a.NgaySinh = DateTime.Parse(Console.ReadLine());
+				}
+				catch
+				{
+					Console.WriteLine("Nhap sai ngay sinh vui long nhap lai");
+					a.NgaySinh = DateTime.Today;
+				}
+			}
+			while(a.NgaySinh > DateTime.Today.AddYears(-12));
+			return a;
+		}
+		
+		static void HienThiThongTin(List<clsCauThu> dsCauThu)
+		{
+			Console.WriteLine("-------------------------------------------------------------------");
+			Console.WriteLine("|    Ma So   |              Ten               |  Ngay Sinh | Tuoi |");
+			Console.WriteLine("-------------------------------------------------------------------");
+			foreach (var element in dsCauThu) 
+			{
+				Console.WriteLine("| {0,-10} | {1,-30} | {2,10} |  {3,2}  |", element.MaCauThu,element.TenCauThu,element.NgaySinh.ToString("dd/MM/yyyy"), DateTime.Today.Year -element.NgaySinh.Year);
+			}
+			Console.WriteLine("-------------------------------------------------------------------");
+			Console.Write("Press any key to continue . . . ");
+			Console.ReadKey(true);
+		}
+
+		static void HienThiThongTinCauThuNhoTuoiNhat(List<clsCauThu> dsCauThu)
+		{
+			clsCauThu min = dsCauThu[0];
+			int i;
+			Console.WriteLine("-------------------------------------------------------------------");
+			Console.WriteLine("|    Ma So   |              Ten               |  Ngay Sinh | Tuoi |");
+			Console.WriteLine("-------------------------------------------------------------------");
+			foreach (var element in dsCauThu) 
+			{
+				Console.WriteLine("| {0,-10} | {1,-30} | {2,10} |  {3,2}  |", element.MaCauThu,element.TenCauThu,element.NgaySinh.ToString("dd/MM/yyyy"), DateTime.Today.Year -element.NgaySinh.Year);
+				i = min.NgaySinh.CompareTo(element.NgaySinh);
+				//j = Math.Abs(DateTime.Today.CompareTo(min.NgaySinh));
+				if(min.NgaySinh.CompareTo(element.NgaySinh)==-1)
+				{
+					min = element;
+				}
+			}
+			Console.WriteLine("-------------------------------------------------------------------");
+			Console.WriteLine("| {0,-10} | {1,-30} | {2,10} |  {3,2}  |", min.MaCauThu,min.TenCauThu,min.NgaySinh.ToString("dd/MM/yyyy"), DateTime.Today.Year -min.NgaySinh.Year);
+			Console.WriteLine("-------------------------------------------------------------------");
+			Console.Write("Press any key to continue . . . ");
+			Console.ReadKey(true);
+		}
+		
+		static void SapSepDanhSachCauThu(List<clsCauThu> dsCauThu)
+		{
+			int i,j;
+			clsCauThu t;
+			for(i=0;i<dsCauThu.Count-1;i=i+1)
+			{
+				for(j=i+1;j<dsCauThu.Count;j=j+1)
+				{
+					if(dsCauThu[i].NgaySinh.CompareTo(dsCauThu[j].NgaySinh)==-1)
+					{
+						t = dsCauThu[j];
+						dsCauThu[j] = dsCauThu[i];
+						dsCauThu[i] = t;
+					}
+				}
+			}
+
+			Console.WriteLine("-------------------------------------------------------------------");
+			Console.WriteLine("|    Ma So   |              Ten               |  Ngay Sinh | Tuoi |");
+			Console.WriteLine("-------------------------------------------------------------------");
+			foreach (var element in dsCauThu) 
+			{
+				Console.WriteLine("| {0,-10} | {1,-30} | {2,10} |  {3,2}  |", element.MaCauThu,element.TenCauThu,element.NgaySinh.ToString("dd/MM/yyyy"), DateTime.Today.Year -element.NgaySinh.Year);
+			}
+			Console.WriteLine("-------------------------------------------------------------------");
+			Console.Write("Press any key to continue . . . ");
+			Console.ReadKey(true);
+		}
+		
+		static void SapSepDanhSachCauThu1(List<clsCauThu> dsCauThu)
+		{
+			List<clsCauThu> sort = dsCauThu.OrderBy(ct => ct.NgaySinh).ToList();
+			List<clsCauThu> sort = dsCauThu.OrderByDescending(ct => ct.NgaySinh).ToList();
+			
+			Console.WriteLine("-------------------------------------------------------------------");
+			Console.WriteLine("|    Ma So   |              Ten               |  Ngay Sinh | Tuoi |");
+			Console.WriteLine("-------------------------------------------------------------------");
+			foreach (var element in sort) 
+			{
+				Console.WriteLine("| {0,-10} | {1,-30} | {2,10} |  {3,2}  |", element.MaCauThu,element.TenCauThu,element.NgaySinh.ToString("dd/MM/yyyy"), DateTime.Today.Year -element.NgaySinh.Year);
+			}
+			Console.WriteLine("-------------------------------------------------------------------");
+			Console.Write("Press any key to continue . . . ");
+			Console.ReadKey(true);
+		}
+
+		
+		
 		static void HienThiThongTin(List<clsMatHang> dsMatHang)
 		{
 			Console.WriteLine("----------------------------------------------------------------------");
@@ -145,15 +257,18 @@ namespace BT670
 			Console.Write("Press any key to continue . . . ");
 			Console.ReadKey(true);
 		}
+		
 		public static void Main(string[] args)
 		{
 			List<string> s = new List<string>();
 			List<clsMatHang> dsMatHang = new List<clsMatHang>();
+			List<clsCauThu> dsCauThu = new List<clsCauThu>();
 			int index,i;
-			s.Add("1. Nhap mat hang");
+			s.Add("1. Nhap Cau Thu");
 			s.Add("2. Xuat danh sach");
-			s.Add("3. Tim mat hang gia tri lon nhat");
-			s.Add("4. Dem so luong mat hang");
+			s.Add("3. Tim cau thu nho tuoi nhat");
+			s.Add("4. Sap sep");
+			s.Add("4. Sap sep1");
 			s.Add("5. Thoat");
 			do
 			{
@@ -161,20 +276,26 @@ namespace BT670
 				switch(index)
 				{
 					case 0:
-						dsMatHang.Add(NhapMatHang());
+						dsCauThu.Add(NhapCauThu());
 						break;
 					case 1:
-						HienThiThongTin(dsMatHang);
+						HienThiThongTin(dsCauThu);
 						break;
 					case 2:
-						TimMatHang(dsMatHang);
+						HienThiThongTinCauThuNhoTuoiNhat(dsCauThu);
+						//TimMatHang(dsMatHang);
 						break;
 					case 3:
-						LocMatHang(dsMatHang);
+						SapSepDanhSachCauThu(dsCauThu);
+						//LocMatHang(dsMatHang);
+						break;
+					case 4:
+						SapSepDanhSachCauThu1(dsCauThu);
+						//LocMatHang(dsMatHang);
 						break;
 				
 				}
-			}while (index != 4);
+			}while (index != 5);
 			
 			Console.Write("Press any key to continue . . . ");
 			Console.ReadKey(true);
