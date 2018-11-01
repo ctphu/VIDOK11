@@ -47,6 +47,18 @@ namespace HelloWorldWindows
 			tbDiemTrungBinh.Text = thisinh.DiemTrungBinh.ToString();
 			tbKetQua.Text = thisinh.KetQua;
 		}
+		public void SetDiemLy(double dLy)
+		{
+			thisinh.DiemLy = dLy;
+			tbDiemTrungBinh.Text = thisinh.DiemTrungBinh.ToString();
+			tbKetQua.Text = thisinh.KetQua;
+		}
+		public void SetDiemHoa(double dHoa)
+		{
+			thisinh.DiemHoa = dHoa;
+			tbDiemTrungBinh.Text = thisinh.DiemTrungBinh.ToString();
+			tbKetQua.Text = thisinh.KetQua;
+		}
 		
 		void BtClearClick(object sender, EventArgs e)
 		{
@@ -71,6 +83,42 @@ namespace HelloWorldWindows
 			{
 				double dToan = double.Parse(cbDiemToan.Text);
 				SetDiemToan(dToan);
+			}catch
+			{
+				
+			}
+		}
+		
+		void CbDiemLySelectedIndexChanged(object sender, EventArgs e)
+		{
+			try
+			{
+				double dLy = double.Parse(cbDiemLy.Text);
+				SetDiemLy(dLy);
+			}catch
+			{
+				
+			}
+		}
+		
+		void CbDiemLyTextChanged(object sender, EventArgs e)
+		{
+			try
+			{
+				double dLy = double.Parse(cbDiemLy.Text);
+				SetDiemLy(dLy);
+			}catch
+			{
+				
+			}
+		}
+		
+		void CbDiemHoaSelectedIndexChanged(object sender, EventArgs e)
+		{
+			try
+			{
+				double dHoa = double.Parse(cbDiemHoa.Text);
+				SetDiemHoa(dHoa);
 			}catch
 			{
 				

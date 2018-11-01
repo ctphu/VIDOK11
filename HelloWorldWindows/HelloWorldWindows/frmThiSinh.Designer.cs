@@ -145,6 +145,8 @@ namespace HelloWorldWindows
 			this.cbDiemLy.Size = new System.Drawing.Size(88, 24);
 			this.cbDiemLy.TabIndex = 7;
 			this.cbDiemLy.Text = "0";
+			this.cbDiemLy.SelectedIndexChanged += new System.EventHandler(this.CbDiemLySelectedIndexChanged);
+			this.cbDiemLy.TextChanged += new System.EventHandler(this.CbDiemLyTextChanged);
 			// 
 			// label5
 			// 
@@ -174,6 +176,8 @@ namespace HelloWorldWindows
 			this.cbDiemHoa.Size = new System.Drawing.Size(121, 24);
 			this.cbDiemHoa.TabIndex = 9;
 			this.cbDiemHoa.Text = "0";
+			this.cbDiemHoa.SelectedIndexChanged += new System.EventHandler(this.CbDiemHoaSelectedIndexChanged);
+			this.cbDiemHoa.TextChanged += new System.EventHandler(this.CbDiemHoaSelectedIndexChanged);
 			// 
 			// label6
 			// 
