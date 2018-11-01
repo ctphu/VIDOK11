@@ -7,6 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -18,14 +20,18 @@ namespace HelloWorldWindows
 	public partial class frmThiSinh : Form
 	{
 		clsThiSinh thisinh = new clsThiSinh();
-		
+		List<clsThiSinh> dsThiSinh = new List<clsThiSinh>();
+		BindingList<clsThiSinh> bindingList;
+		BindingSource source;
 		public frmThiSinh()
 		{
 			//
 			// The InitializeComponent() call is required for Windows Forms designer support.
 			//
 			InitializeComponent();
-			
+			bindingList = new BindingList<clsThiSinh>(dsThiSinh);
+			source = new BindingSource(bindingList, null);
+			dgThiSinh.DataSource = source;
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
@@ -123,6 +129,19 @@ namespace HelloWorldWindows
 			{
 				
 			}
+		}
+		
+		void BtAddClick(object sender, EventArgs e)
+		{
+			thisinh.MaSo = tbMaSo.Text;
+			thisinh.HoTen = tbHoTen.Text;
+			source.Add(thisinh);
+			//dsThiSinh.Add(thisinh);
+			//dgThiSinh.
+			//dgThiSinh.DataSource = dsThiSinh;
+			thisinh = new clsThiSinh();
+			ClearData();
+			dgThiSinh.Refresh();
 		}
 	}
 }

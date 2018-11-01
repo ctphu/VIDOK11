@@ -218,6 +218,7 @@ namespace HelloWorldWindows
 			this.btAdd.TabIndex = 14;
 			this.btAdd.Text = "Them";
 			this.btAdd.UseVisualStyleBackColor = true;
+			this.btAdd.Click += new System.EventHandler(this.BtAddClick);
 			// 
 			// btClear
 			// 
@@ -231,18 +232,21 @@ namespace HelloWorldWindows
 			// 
 			// dgThiSinh
 			// 
+			this.dgThiSinh.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+									| System.Windows.Forms.AnchorStyles.Left) 
+									| System.Windows.Forms.AnchorStyles.Right)));
 			this.dgThiSinh.DataMember = "";
 			this.dgThiSinh.HeaderForeColor = System.Drawing.SystemColors.ControlText;
 			this.dgThiSinh.Location = new System.Drawing.Point(40, 209);
 			this.dgThiSinh.Name = "dgThiSinh";
-			this.dgThiSinh.Size = new System.Drawing.Size(600, 220);
+			this.dgThiSinh.Size = new System.Drawing.Size(600, 237);
 			this.dgThiSinh.TabIndex = 16;
 			// 
 			// frmThiSinh
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(694, 464);
+			this.ClientSize = new System.Drawing.Size(694, 481);
 			this.Controls.Add(this.dgThiSinh);
 			this.Controls.Add(this.btClear);
 			this.Controls.Add(this.btAdd);
