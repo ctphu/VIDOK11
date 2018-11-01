@@ -8,6 +8,8 @@
  */
 using System;
 using System.Collections.Generic;
+using System.IO;
+
 namespace MenuWithKeyPress
 {
 	public struct Menu{
@@ -16,6 +18,77 @@ namespace MenuWithKeyPress
 	}
 	class Program
 	{
+		static StreamWriter writer; 
+		static bool CheckPosition(int row, int col, List<int> rows, List<int> cols, List<int> condition1, List<int> condition2)
+		{
+			// check row
+			if(rows.IndexOf(row)>=0)
+			{
+				return false;
+			}
+			if(cols.IndexOf(col)>=0)
+			{
+				return false;
+			}
+			if(condition1.IndexOf(row-col)>=0)
+			{
+				return false;
+			}
+			if(condition2.IndexOf(row+col)>=0)
+			{
+				return false;
+			}
+			return true;
+		}
+		static bool Queen(int Order, List<int> rows, List<int> cols, List<int> condition1, List<int> condition2, List<string> sCurrentPosition )
+		{
+			int i, j;
+			if(Order == 8)
+			{
+				for(i=Order-1;i<8;i=i+1)
+				{
+					for(j=0;j<8;j=j+1)
+					{
+						if(CheckPosition(i,j,rows, cols, condition1, condition2))
+						{
+							sCurrentPosition.Add(string.Format("[{0},{1}]",i,j));
+							foreach (var element in sCurrentPosition) {
+								writer.Write(element);
+							}
+							writer.WriteLine();
+							sCurrentPosition.RemoveAt(sCurrentPosition.Count - 1);
+							//Console.ReadKey(true);
+							return true;
+						}   
+					}
+				}
+				return false;
+			}
+			else
+			{
+				for(i=Order-1;i<8;i=i+1)
+				{
+					for(j=0;j<8;j=j+1)
+					{
+						if(CheckPosition(i,j,rows, cols, condition1, condition2))
+						{
+							sCurrentPosition.Add(string.Format("[{0},{1}]",i,j));
+							rows.Add(i);
+							cols.Add(j);
+							condition1.Add(i-j);
+							condition2.Add(i+j);
+							Queen(Order + 1,rows,cols,condition1,condition2,sCurrentPosition);
+							rows.RemoveAt(rows.Count-1);
+							cols.RemoveAt(cols.Count-1);
+							condition1.RemoveAt(condition1.Count-1);
+							condition2.RemoveAt(condition2.Count-1);
+							sCurrentPosition.RemoveAt(sCurrentPosition.Count - 1);
+						}   
+					}
+				}
+				return false;
+			}
+		}
 		static int DisplayMenu(List<string> menu, List<Menu> orders)
 		{
 			int i, index = 0;
@@ -65,13 +138,21 @@ namespace MenuWithKeyPress
 		}
 		public static void Main(string[] args)
 		{
+			writer = new StreamWriter("queen.txt");
+			List<int> rows = new List<int>();
+			List<int> cols = new List<int>();
+			List<int> condition1 = new List<int>();
+			List<int> condition2 = new List<int>();
+			List<string> sResult = new List<string>();
+			
 			List<Menu> order = new List<Menu>();
 			Menu item;
 			List<string> s = new List<string>();
 			int index,i;
 			s.Add("1. Ga Ran (30)");
 			s.Add("2. Bo Go (35)");
-			s.Add("3. Thoat");
+			s.Add("3. Queen");
+			s.Add("4. Thoat");
 			do
 			{
 				index = DisplayMenu(s,order);
@@ -91,12 +172,20 @@ namespace MenuWithKeyPress
 						item.Price = 35;
 						order.Add(item);
 						break;
+					case 2:
+						Queen(1,rows,cols,condition1, condition2, sResult);
+						writer.Close();
+						//Console.ReadKey(true);
+						break;
+				
 				}
-			}while (index != 2);
+			}while (index != 3);
 			Console.Clear();
 			DisplayOrder(order);
 			Console.Write("Press any key to continue . . . ");
 			Console.ReadKey(true);
 		}
 	}
+	
+	
 }

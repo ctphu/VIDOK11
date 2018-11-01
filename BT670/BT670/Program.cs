@@ -178,7 +178,7 @@ namespace BT670
 		static void SapSepDanhSachCauThu1(List<clsCauThu> dsCauThu)
 		{
 			List<clsCauThu> sort = dsCauThu.OrderBy(ct => ct.NgaySinh).ToList();
-			List<clsCauThu> sort = dsCauThu.OrderByDescending(ct => ct.NgaySinh).ToList();
+			//List<clsCauThu> sort = dsCauThu.OrderByDescending(ct => ct.NgaySinh).ToList();
 			
 			Console.WriteLine("-------------------------------------------------------------------");
 			Console.WriteLine("|    Ma So   |              Ten               |  Ngay Sinh | Tuoi |");
