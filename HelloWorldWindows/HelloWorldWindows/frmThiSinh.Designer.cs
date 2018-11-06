@@ -53,6 +53,10 @@ namespace HelloWorldWindows
 			this.btAdd = new System.Windows.Forms.Button();
 			this.btClear = new System.Windows.Forms.Button();
 			this.dgThiSinh = new System.Windows.Forms.DataGrid();
+			this.btSua = new System.Windows.Forms.Button();
+			this.btXoa = new System.Windows.Forms.Button();
+			this.btnSave = new System.Windows.Forms.Button();
+			this.btnLoad = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dgThiSinh)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -212,7 +216,7 @@ namespace HelloWorldWindows
 			// 
 			// btAdd
 			// 
-			this.btAdd.Location = new System.Drawing.Point(192, 144);
+			this.btAdd.Location = new System.Drawing.Point(40, 144);
 			this.btAdd.Name = "btAdd";
 			this.btAdd.Size = new System.Drawing.Size(124, 38);
 			this.btAdd.TabIndex = 14;
@@ -222,7 +226,7 @@ namespace HelloWorldWindows
 			// 
 			// btClear
 			// 
-			this.btClear.Location = new System.Drawing.Point(381, 144);
+			this.btClear.Location = new System.Drawing.Point(499, 144);
 			this.btClear.Name = "btClear";
 			this.btClear.Size = new System.Drawing.Size(125, 38);
 			this.btClear.TabIndex = 15;
@@ -239,14 +243,59 @@ namespace HelloWorldWindows
 			this.dgThiSinh.HeaderForeColor = System.Drawing.SystemColors.ControlText;
 			this.dgThiSinh.Location = new System.Drawing.Point(40, 209);
 			this.dgThiSinh.Name = "dgThiSinh";
-			this.dgThiSinh.Size = new System.Drawing.Size(600, 237);
+			this.dgThiSinh.Size = new System.Drawing.Size(895, 237);
 			this.dgThiSinh.TabIndex = 16;
+			this.dgThiSinh.CurrentCellChanged += new System.EventHandler(this.DgThiSinhCurrentCellChanged);
+			// 
+			// btSua
+			// 
+			this.btSua.Location = new System.Drawing.Point(193, 144);
+			this.btSua.Name = "btSua";
+			this.btSua.Size = new System.Drawing.Size(124, 38);
+			this.btSua.TabIndex = 17;
+			this.btSua.Text = "Sua";
+			this.btSua.UseVisualStyleBackColor = true;
+			this.btSua.Click += new System.EventHandler(this.BtSuaClick);
+			// 
+			// btXoa
+			// 
+			this.btXoa.Location = new System.Drawing.Point(346, 144);
+			this.btXoa.Name = "btXoa";
+			this.btXoa.Size = new System.Drawing.Size(124, 38);
+			this.btXoa.TabIndex = 18;
+			this.btXoa.Text = "Xoa";
+			this.btXoa.UseVisualStyleBackColor = true;
+			this.btXoa.Click += new System.EventHandler(this.BtXoaClick);
+			// 
+			// btnSave
+			// 
+			this.btnSave.Location = new System.Drawing.Point(653, 144);
+			this.btnSave.Name = "btnSave";
+			this.btnSave.Size = new System.Drawing.Size(125, 38);
+			this.btnSave.TabIndex = 19;
+			this.btnSave.Text = "Save";
+			this.btnSave.UseVisualStyleBackColor = true;
+			this.btnSave.Click += new System.EventHandler(this.BtnSaveClick);
+			// 
+			// btnLoad
+			// 
+			this.btnLoad.Location = new System.Drawing.Point(807, 144);
+			this.btnLoad.Name = "btnLoad";
+			this.btnLoad.Size = new System.Drawing.Size(125, 38);
+			this.btnLoad.TabIndex = 20;
+			this.btnLoad.Text = "Load";
+			this.btnLoad.UseVisualStyleBackColor = true;
+			this.btnLoad.Click += new System.EventHandler(this.BtnLoadClick);
 			// 
 			// frmThiSinh
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(694, 481);
+			this.ClientSize = new System.Drawing.Size(989, 481);
+			this.Controls.Add(this.btnLoad);
+			this.Controls.Add(this.btnSave);
+			this.Controls.Add(this.btXoa);
+			this.Controls.Add(this.btSua);
 			this.Controls.Add(this.dgThiSinh);
 			this.Controls.Add(this.btClear);
 			this.Controls.Add(this.btAdd);
@@ -265,11 +314,17 @@ namespace HelloWorldWindows
 			this.Controls.Add(this.tbMaSo);
 			this.Controls.Add(this.label1);
 			this.Name = "frmThiSinh";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "frmThiSinh";
+			this.Load += new System.EventHandler(this.FrmThiSinhLoad);
 			((System.ComponentModel.ISupportInitialize)(this.dgThiSinh)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.Button btnLoad;
+		private System.Windows.Forms.Button btnSave;
+		private System.Windows.Forms.Button btXoa;
+		private System.Windows.Forms.Button btSua;
 		private System.Windows.Forms.DataGrid dgThiSinh;
 		private System.Windows.Forms.Button btClear;
 		private System.Windows.Forms.Button btAdd;

@@ -11,6 +11,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Web.Script.Serialization;
+using System.IO;
+
 
 namespace HelloWorldWindows
 {
@@ -46,6 +49,16 @@ namespace HelloWorldWindows
 			cbDiemHoa.Text = "0";
 			tbDiemTrungBinh.Text = "0";
 			tbKetQua.Text = "";
+		}
+		public void ShowData(clsThiSinh ts)
+		{
+			tbMaSo.Text = ts.MaSo;
+			tbHoTen.Text = ts.HoTen;
+			cbDiemToan.Text = ts.DiemToan.ToString();
+			cbDiemLy.Text = ts.DiemLy.ToString();
+			cbDiemHoa.Text = ts.DiemHoa.ToString();
+			tbDiemTrungBinh.Text = ts.DiemTrungBinh.ToString();
+			tbKetQua.Text = ts.KetQua;
 		}
 		public void SetDiemToan(double dToan)
 		{
@@ -134,7 +147,7 @@ namespace HelloWorldWindows
 		void BtAddClick(object sender, EventArgs e)
 		{
 			thisinh.MaSo = tbMaSo.Text;
-			thisinh.HoTen = tbHoTen.Text;
+			thisinh.HoTen = tbHoTen.Text;			
 			source.Add(thisinh);
 			//dsThiSinh.Add(thisinh);
 			//dgThiSinh.
@@ -142,6 +155,95 @@ namespace HelloWorldWindows
 			thisinh = new clsThiSinh();
 			ClearData();
 			dgThiSinh.Refresh();
+		}
+		
+		void DgThiSinhCurrentCellChanged(object sender, EventArgs e)
+		{
+			try
+			{
+				var row = source[dgThiSinh.CurrentRowIndex];
+				if(row != null)
+				{
+					var currentThiSinh = (clsThiSinh)row;
+					ShowData(currentThiSinh);
+				}
+			}catch
+			{
+				
+			}
+		}
+		
+		void BtSuaClick(object sender, EventArgs e)
+		{
+			thisinh.MaSo = tbMaSo.Text;
+			thisinh.HoTen = tbHoTen.Text;
+			source[dgThiSinh.CurrentRowIndex] = thisinh;
+			//source.Add(thisinh);
+			thisinh = new clsThiSinh();
+			ClearData();
+			dgThiSinh.Refresh();
+		}
+		
+		void BtXoaClick(object sender, EventArgs e)
+		{
+			try
+			{
+				clsThiSinh currentThiSinh = (clsThiSinh)source[dgThiSinh.CurrentRowIndex];
+				source.RemoveAt(dgThiSinh.CurrentRowIndex);
+				
+//				JavaScriptSerializer serializer = new JavaScriptSerializer();
+//				var json = serializer.Serialize(currentThiSinh);
+//				MessageBox.Show(json);
+//				
+//				var deserializeObject = serializer.Deserialize<clsThiSinh>(json);
+//				clsThiSinh newThiSinh = (clsThiSinh)deserializeObject;
+//				ShowData(newThiSinh);
+			}catch(Exception ex)
+			{
+				MessageBox.Show(ex.ToString());
+			}
+		}
+		
+		void FrmThiSinhLoad(object sender, EventArgs e)
+		{
+			
+		}
+		
+		void BtnSaveClick(object sender, EventArgs e)
+		{
+			SaveFileDialog save = new SaveFileDialog();
+			save.Filter = "Json Files|*.json|All Files|*.*";
+			if(save.ShowDialog() == DialogResult.OK)
+			{
+				string sFileName = save.FileName;
+				JavaScriptSerializer serializer = new JavaScriptSerializer();
+				var json = serializer.Serialize(dsThiSinh);
+				StreamWriter writer ;
+				writer = new StreamWriter(sFileName);
+				writer.Write(json);
+				writer.Close();
+				MessageBox.Show("Saved !");
+			}
+		}
+		
+		void BtnLoadClick(object sender, EventArgs e)
+		{
+			OpenFileDialog open = new OpenFileDialog();
+			open.Filter = "Json Files|*.json|All Files|*.*";
+			if(open.ShowDialog() == DialogResult.OK)
+			{
+				string sFileName = open.FileName;
+				JavaScriptSerializer serializer = new JavaScriptSerializer();
+				StreamReader reader = new StreamReader(sFileName);
+				string json = reader.ReadToEnd();
+				reader.Close();
+				var deserializeObject = serializer.Deserialize<List<clsThiSinh>>(json);
+				source.Clear();
+				foreach (var element in deserializeObject) {
+					source.Add(element);
+				}
+				MessageBox.Show("Load OK !");
+			}
 		}
 	}
 }
