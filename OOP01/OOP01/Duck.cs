@@ -13,10 +13,14 @@ namespace OOP01
 	/// <summary>
 	/// Description of Duck.
 	/// </summary>
-	public class Duck
+	public class Duck:Animal
 	{
-		public Duck()
+		public Duck():base()
 		{
+		}
+		public new void Move()
+		{
+           Console.WriteLine("Duck Move..");
 		}
 	}
 }

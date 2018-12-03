@@ -15,8 +15,26 @@ namespace OOP01
 	/// </summary>
 	public class Animal
 	{
+		public string Name;
 		public Animal()
 		{
+			Name = "Animal";
+		}
+		public Animal(string sName)
+		{
+			Name = sName;
+		}
+		public override string ToString()
+		{
+			return string.Format("Name:{0}",Name);
+		}
+		public virtual void Move()
+		{
+			Console.WriteLine("{0} move", Name);
+		}
+		public void Sleep()
+		{
+			Console.WriteLine("{0} sleep", Name);
 		}
 	}
 }
