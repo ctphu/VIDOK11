@@ -8,6 +8,7 @@
  */
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace OOP01
 {
@@ -30,8 +31,9 @@ namespace OOP01
 					result = double.Parse(Console.ReadLine());
 				}catch(Exception ex)
 				{
+					result = Min - 1;
 					Console.WriteLine("Input is not correct !");
-					//Console.WriteLine(ex.ToString());
+					
 				}
 			}while (result < Min || result > Max);
 			
@@ -48,6 +50,7 @@ namespace OOP01
 					result = int.Parse(Console.ReadLine());
 				}catch(Exception ex)
 				{
+					result = Min - 1;
 					Console.WriteLine("Input is not correct !");
 					//Console.WriteLine(ex.ToString());
 				}
@@ -94,6 +97,13 @@ namespace OOP01
                 	
 			}while(true);
 			return index;
+		}
+		
+		public List<ThiSinh> Top(List<ThiSinh> list, int iNumber)
+		{
+			List<ThiSinh> result = list.OrderByDescending(ts => ts.TongDiem).ToList();
+			result.RemoveRange(iNumber,list.Count - iNumber);
+			return result;
 		}
 	}
 }

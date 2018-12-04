@@ -21,13 +21,11 @@ namespace OOP01
 		}
 		public override void NhapThongTin()
 		{
+			VIDOUtils utils = new VIDOUtils();
 			base.NhapThongTin();
-			Console.Write("Nhap Diem Toan:");
-			DiemToan = double.Parse(Console.ReadLine());
-			Console.Write("Nhap Diem Hoa:");
-			DiemHoa = double.Parse(Console.ReadLine());
-			Console.Write("Nhap Diem Ly:");
-			DiemLy = double.Parse(Console.ReadLine());
+			DiemToan = utils.ReadNumber("Nhap Diem Toan: ",0,10);
+			DiemLy = utils.ReadNumber("Nhap Diem Ly: ",0,10);
+			DiemHoa = utils.ReadNumber("Nhap Diem Hoa: ",0,10);
 			TongDiem = DiemToan + DiemLy + DiemHoa;
 		}
 		public override string ToString()

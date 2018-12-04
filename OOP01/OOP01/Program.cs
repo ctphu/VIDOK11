@@ -28,7 +28,8 @@ namespace OOP01
 			s.Add("2. Nhap Thi Sinh Khoi C");
 			s.Add("3. Nhap Thi Sinh Khoi D");
 			s.Add("4. Danh Sach Thi Sinh");
-			s.Add("5. Thoat");
+			s.Add("5. Danh Sach Thi Sinh Cao Diem");
+			s.Add("6. Thoat");
 			do
 			{
 				index = utils.DisplayMenu(s);
@@ -40,7 +41,9 @@ namespace OOP01
 						listThiSinh.Add(ts);
 						break;
 					case 1:
-						
+						ts = new ThiSinhKC();
+						ts.NhapThongTin();
+						listThiSinh.Add(ts);
 						break;
 					case 2:						
 						ts = new ThiSinhKD();
@@ -53,9 +56,15 @@ namespace OOP01
 						}
 						Console.ReadKey(true);
 						break;
-				
+					case 4:
+						foreach (var element in utils.Top(listThiSinh,2) )
+						{
+							Console.WriteLine(element.ToString());
+						}
+						Console.ReadKey(true);
+						break;
 				}
-			}while (index != 4);
+			}while (index != 5);
 			
 //			Animal a, b;
 //			Animal c;
@@ -85,5 +94,6 @@ namespace OOP01
 			Console.Write("Press any key to continue . . . ");
 			Console.ReadKey(true);
 		}
+	
 	}
 }
